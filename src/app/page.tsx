@@ -1,9 +1,9 @@
 "use client"
 import {useEffect, useRef} from "react";
 import * as THREE from 'three'
-import {Scene} from 'three'
-import {GLTF, GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {Object3D} from 'three'
+import {GLTF, GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js";
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
 
 
 export default function Home() {
@@ -33,10 +33,10 @@ export default function Home() {
         const loader = new GLTFLoader()
         loader.load('/densan.glb', (gltf: GLTF) => {
             const model = gltf.scene; // 読み込んだgltfのモデル部分はsceneに入っている
-            model.scale.set(1, 1, 1);
+            model.scale.set(1.75, 1.75, 1.75);
 
             // ワイヤフレームにする
-            model.traverse((child: Scene) => { // 読み込んだmodelは複数のオブジェクトで構成されている, traverseで全てにコールバックを実行する 
+            model.traverse((child: Object3D) => { // 読み込んだmodelは複数のオブジェクトで構成されている, traverseで全てにコールバックを実行する 
                 if (child instanceof THREE.Mesh) {  // 読み込んだ子がMeshだったなら
 
                     // 元の面(ポリゴン)を非表示にする
@@ -102,18 +102,16 @@ export default function Home() {
 
 
     return (
-        // ---------- 変更ここから ----------
         <main className={"relative min-h-dvh overflow-hidden"}>
             {/*canvas格納用*/}
             <div ref={mountRef} className={"absolute top-1/2 left-1/2 -translate-1/2 "}/>
 
             {/*周囲の装飾*/}
             <img src={"/ring.png"}
-                 className={"absolute top-1/2 left-1/2 -translate-1/2 aspect-square max-h-[60em] max-w-[60em] h-auto w-auto select-none pointer-events-none object-contain rotate-[var(--rotate)] opacity-70"}/>
+                 className={"absolute top-1/2 left-1/2 -translate-1/2 aspect-square max-h-[110em] max-w-[110em] h-auto w-auto select-none pointer-events-none object-contain rotate-[var(--rotate)] opacity-70"}/>
             
             {/*見出し*/}
-            <p className={"absolute text-center top-1/2 left-1/2 -translate-1/2 w-full text-[20vw] tracking-[4vw] font-extrabold select-none text-white"}>電<span className={"text-[#ffffff]"}>算</span>部</p>
+            <p className={"absolute text-center top-1/2 left-1/2 -translate-1/2 ml-8 w-full text-[20vw] tracking-[3vw] select-none pointer-events-none font-extrabold  text-white"}>電<span className={"text-[#ffffff]"}>算</span>部</p>
         </main>
-        // ---------- 変更ここまで ----------
     )
 }
