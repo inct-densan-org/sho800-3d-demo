@@ -1,15 +1,14 @@
 import type { NextConfig } from 'next';
 
-// ここに作成したリポジトリ名を設定してください
-const repoName = 'sho800-3d-demo';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const nextConfig: NextConfig = {
     // 静的エクスポートを有効化
     output: 'export',
 
     // プロジェクトサイトのURL（/リポジトリ名）に対応させる
-    basePath: `/${repoName}`,
-    assetPrefix: `/${repoName}`,
+    basePath: basePath,
+    assetPrefix: basePath,
 
     images: {
         // 静的エクスポートではNext.jsの画像最適化APIが使えないため無効化

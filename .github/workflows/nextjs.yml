@@ -37,6 +37,9 @@ jobs:
         run: npm ci
 
       - name: Build with Next.js
+        env:
+          # ここにリポジトリ名を指定します
+          NEXT_PUBLIC_BASE_PATH: '/sho800-3d-demo'
         run: npm run build
 
       - name: Upload artifact

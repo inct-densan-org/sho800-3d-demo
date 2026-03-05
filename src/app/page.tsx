@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import {Object3D} from 'three'
 import {GLTF, GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
-
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export default function Home() {
     const mountRef = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ export default function Home() {
 
         let loadedModel: THREE.Group | null = null;  // ロード済みモデルを捕まえる用変数
         const loader = new GLTFLoader()
-        loader.load('/densan.glb', (gltf: GLTF) => {
+        loader.load(`${basePath}/densan.glb`, (gltf: GLTF) => {
             const model = gltf.scene; // 読み込んだgltfのモデル部分はsceneに入っている
             model.scale.set(1.75, 1.75, 1.75);
 
@@ -107,7 +107,7 @@ export default function Home() {
             <div ref={mountRef} className={"absolute top-1/2 left-1/2 -translate-1/2 "}/>
 
             {/*周囲の装飾*/}
-            <img src={"/ring.png"}
+            <img src={`${basePath}/ring.png`}
                  className={"absolute top-1/2 left-1/2 -translate-1/2 aspect-square max-h-[110em] max-w-[110em] h-auto w-auto select-none pointer-events-none object-contain rotate-[var(--rotate)] opacity-70"}/>
             
             {/*見出し*/}
