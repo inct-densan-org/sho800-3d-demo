@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
 
     // プロジェクトサイトのURL（/リポジトリ名）に対応させる
     basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}`,
 
     images: {
         // 静的エクスポートではNext.jsの画像最適化APIが使えないため無効化
